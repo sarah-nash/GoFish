@@ -4,8 +4,6 @@ public enum Suit {
     SPADES,
     CLUBS;
 
-
-
     public static String suitToString(Suit suit){
         String suitName =
         switch (suit){

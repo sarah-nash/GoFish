@@ -15,6 +15,10 @@ public class Card {
         return suit;
     }
 
+    public String toString(){
+        return Rank.rankToString(value) + " of " + Suit.suitToString(suit);
+
+    }
 
 /*
     public static void main(String[] args) {
