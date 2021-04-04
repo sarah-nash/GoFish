@@ -1,3 +1,29 @@
+/**
+ * Compilation: javac GoFish.java
+ * Execution: java GoFish
+ *
+ * This program allows the user to play GoFish against the computer.
+ *
+ * I actually programmed GoFish to be played by having players form pairs of cards
+ * (because that's how I play GoFish) and saw afterwards that the Official rules play with books.
+ * So I adjusted it to be played with either rule type :-)
+ *
+ * In the pairs gameplay, the current player can ask their opponent for a value in their hand,
+ * but the opponent will only hand over at most 1 card with the same value.
+ * Players will earn one point for every pair they make.
+ *
+ * In the books gameplay, the current player can ask their opponent for all cards of a certain value,
+ * and the opponent will give everything they have for a max of 3 cards.
+ * Players will earn one point for every book (4 of a kind) they make.
+ *
+ * Object Oriented Programming
+ * Spring 2021
+ * @author Sarah Nash
+ * @author Dr. Caitrin Eaton
+ *
+ *
+ */
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -9,6 +35,9 @@ public class GoFish {
     public GameMode gameMode;
 
 
+    /**
+     * Actually runs the game of Go Fish.
+     */
     public GoFish() {
         System.out.println(
                 "Welcome to Go Fish!" +
@@ -16,7 +45,9 @@ public class GoFish {
         String name = scan.next();
         System.out.println("Welcome, " + name + "! "
                 + "This game has two possible styles: Pairs and Books."
-                + "Which rules would you like to use? ");
+                + "\nThe goal of Pairs is to get as many pairs (2 of a kind) as possible, "
+                + "while the goal of Books is to get as many books (4 of a kind) as possible. "
+                + "\nWhich rules would you like to play by? (Pairs or Books):  ");
 
         String mode = scan.next();
         gameMode = chooseGameMode(mode);
@@ -31,6 +62,7 @@ public class GoFish {
         deck.shuffleDeck();
 
         //deal cards to the players
+
         deck.dealCards( players, 7);
 
         //and check everyone's hand for books or pairs
@@ -62,7 +94,8 @@ public class GoFish {
         //once the deck and hands are empty, show the score
         if(deck.isEmpty() && players[0].getHand().isEmpty() && players[1].getHand().isEmpty()){
             Player winner = checkWin(players[0], players[1]);
-            System.out.println("=== F I N A L  S C O R E ===");
+            System.out.println("\nSince there are no more cards in play, the game is over!");
+            System.out.println("\n=== F I N A L  S C O R E ===");
             if(winner==null){
                 System.out.println("\nIt's a draw!");
             }
@@ -74,7 +107,7 @@ public class GoFish {
                 System.out.println(
                         players[0].name + " had " + players[0].getNumPairs() + " pairs, " +
                                 " while " +
-                                players[1].name + " had " + players[1].getNumPairs() + " pairs, ");
+                                players[1].name + " had " + players[1].getNumPairs() + " pairs. ");
             }
             else{
                 System.out.println(
@@ -96,7 +129,7 @@ public class GoFish {
     public void takeTurn(Deck deck, Player player, Player opponent){
         Rank wantedRank;
 
-        System.out.println("\n\t" + player.name + "'s turn!");
+        System.out.println("\n===" + player.name + "'s turn!===");
 
         if(player.getHand().isEmpty()){
             System.out.println("... but their hand is empty! Go fish!");
@@ -396,14 +429,6 @@ public class GoFish {
                 }
 
                 if (numSameValue==3){ //3, since we are not including the initial card
-//                    System.out.println(player.name + " made a book of " + Rank.rankToString(value1) + "'s!");
-//                    System.out.println(player.name + " now has " + player.getNumBooks() + " books total. ");
-//                    ArrayList<Card> newHand = new ArrayList<>();
-//                    for(Card card : player.getHand()){
-//                        if(!card.getValue().equals(value1)){
-//                            newHand.add(card);
-//                        }
-//                    }
                     removeCards(player,value1, GameMode.BOOKS);
                     return true;
                 }

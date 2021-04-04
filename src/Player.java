@@ -31,12 +31,15 @@ public class Player {
     }
 
     /**
-     * Increments the pair counter by 1.
+     * Increments the numPairs counter by 1.
      */
     public void addPair(){
         numPairs++;
     }
 
+    /**
+     * Increments the numBooks counter by 1.
+     */
     public void addBook(){
         numBooks++;
     }

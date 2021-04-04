@@ -1,3 +1,9 @@
+/**
+ *
+ * This class is based off of Orcale's Deck and Deck3 classes.
+ * Use in conjunction with Rank and Suit enums to create a deck of Cards.
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -43,6 +49,7 @@ public class Deck {
      * @param numCards (int) the number of cards each player will receive
      */
     public void dealCards( Player[] players, int numCards){
+        System.out.println("Dealing cards...");
         for(int i=0; i<numCards; i++){
             for(Player player:players){
 

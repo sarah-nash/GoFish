@@ -1,3 +1,9 @@
+/**
+ *
+ * This class is based off of Orcale's Rank and Rank3 classes.
+ * Use in conjunction with Suit enum and Deck class to create a deck of Cards.
+ */
+
 public enum Rank {
     ACE,
     TWO,
